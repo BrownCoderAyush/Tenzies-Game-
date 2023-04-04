@@ -1,23 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
-
+import Die from "./Die.js";
 function App() {
+  let [diceFace,setDiceFace] = React.useState(allNewDice());
+
+  function randomIntFromInterval(min, max) { 
+    return Math.floor(Math.random() * (max - min + 1) + min)
+  }
+
+  function allNewDice(){
+    const newDice = [];
+    for(let i = 0 ; i < 10 ; i++){
+      let dieNum = randomIntFromInterval(1,6);
+      newDice.push(dieNum);
+    }   
+    return newDice;
+  }
+
+  // const diceElements = diceFace.map()
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app--container'>
+      <main className='main--container'>
+        <div className='dice-container'>
+          {diceFace}
+        </div>
+      </main>
     </div>
   );
 }
